@@ -1,20 +1,21 @@
-window.onload = function() {
+window.onload = function () {
 
     var $menuIcon = document.getElementsByClassName('menu-icon')[0],
         $offCanva = document.getElementsByClassName('off-canvas')[0];
-        $siteWrap = document.getElementsByClassName('site-wrapper')[0];
 
-    $menuIcon.addEventListener('click', function() {
+    $siteWrap = document.getElementsByClassName('site-wrapper')[0];
+
+    $menuIcon.addEventListener('click', function () {
         toggleClass($menuIcon, 'close');
         toggleClass($offCanva, 'toggled');
         toggleClass($siteWrap, 'open');
     }, false);
 
-    $menuIcon.addEventListener('mouseenter', function() {
+    $menuIcon.addEventListener('mouseenter', function () {
         addClass($menuIcon, 'hover');
     });
 
-    $menuIcon.addEventListener('mouseleave', function() {
+    $menuIcon.addEventListener('mouseleave', function () {
         removeClass($menuIcon, 'hover');
     });
 
@@ -41,23 +42,36 @@ window.onload = function() {
         }
     }
 
+    var footer = document.getElementsByTagName('footer');
+    setTargetBlank(footer);
+
+    function setTargetBlank(element) {
+        var anchors = element[0].getElementsByTagName('a');
+        
+        for (var i = 0; i < anchors.length; i++) {
+            anchors[i].setAttribute('target', '_blank');
+        }
+    }
+
     // Open Twitter/share in a Pop-Up
     var $popup = document.getElementsByClassName('popup')[0];
+
     if (!$popup) {
         return;
     }
-    $popup.addEventListener('click', function(e) {
+
+    $popup.addEventListener('click', function (e) {
         e.preventDefault()
-        var width  = 575,
+        var width = 575,
             height = 400,
-            left   = (document.documentElement.clientWidth  - width)  / 2,
-            top    = (document.documentElement.clientHeight - height) / 2,
-            url    = this.href,
-            opts   = 'status=1' +
-                     ',width='  + width  +
-                     ',height=' + height +
-                     ',top='    + top    +
-                     ',left='   + left;
+            left = (document.documentElement.clientWidth - width) / 2,
+            top = (document.documentElement.clientHeight - height) / 2,
+            url = this.href,
+            opts = 'status=1' +
+                ',width=' + width +
+                ',height=' + height +
+                ',top=' + top +
+                ',left=' + left;
 
         window.open(url, 'twitter', opts);
 
